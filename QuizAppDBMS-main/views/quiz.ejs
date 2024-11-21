@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/quiz.css">
+</head>
+
+<body>
+  <div class="container vh-100 d-flex justify-content-center align-items-center">
+    <div class="card w-75 p-4 h-50">
+      <h2 id="question" class="text-center">
+
+      </h2>
+      <div id="options" class="mt-3"></div>
+      <div class="text-center mt-4">
+        <button id="nextButton" class="btn btn-success" onclick="nextQuestion()">Next</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    let currentQuestionIndex = 0;
+    let userAnswers = [];
+
+
+    const Questions = (<% - JSON.stringify(questions) %>);
+
+
+    function renderQuestion() {
+
+      if (currentQuestionIndex < Questions.length) {
+        const Question = Questions[currentQuestionIndex];
+        document.getElementById('question').innerText = Question.question;
+
+        const optionsContainer = document.getElementById('options');
+        optionsContainer.innerHTML = '';
+
+
+        Question.options.forEach((option, index) => {
+          const button = document.createElement('button');
+          button.classList.add('btn', 'opt');
+          button.innerText = option;
+          button.onclick = () => selectOption(button, option);
+          optionsContainer.appendChild(button);
+        });
+      }
+    }
+
+
+    function selectOption(button, option) {
+      userAnswers[currentQuestionIndex] = option;
+
+      // Get all the option buttons
+      const buttons = document.querySelectorAll('.opt');
+
+      // Remove 'selected' class from all buttons
+      buttons.forEach(btn => btn.classList.remove('selected'));
+
+      // Add the 'selected' class to the clicked button
+      button.classList.add('selected');
+    }
+
+
+    function nextQuestion() {
+      currentQuestionIndex++;
+
+
+      if (currentQuestionIndex < 15 && currentQuestionIndex < Questions.length) {
+        renderQuestion();
+      } else {
+        // Show results after the last question
+        showResults();
+      }
+    }
+
+
+    function showResults() {
+      const score = userAnswers.reduce((acc, answer, index) => {
+        if (answer === Questions[index].answer) {
+          acc++;
+        }
+        return acc;
+      }, 0);
+
+      const container = document.querySelector(".card");
+      container.innerHTML = `
+    <h2 class="text-center">Your Score: ${score}/15</h2>
+    <div class="text-center mt-4">
+      <a href="home.html" class="btn btn-primary">Go to Home</a>
+    </div>
+  `;
+    }
+
+    // Initial call to render the first question
+    renderQuestion();
+
+  </script>
+</body>
+
+</html>

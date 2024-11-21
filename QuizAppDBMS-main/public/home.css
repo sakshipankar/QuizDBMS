@@ -1,0 +1,73 @@
+body {
+  background: url('ai-generated-8750163_1280.jpg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: DynaPuff,sans-serif;
+}
+#box{
+
+border-radius: 35px;
+color: #3867ad;
+background: rgba(232, 233, 235, 0.567); 
+  backdrop-filter: blur(1px);
+box-shadow:0 3px 3px 5px  #587cb1;
+display: flex; 
+flex-direction: column;
+      justify-content: center; 
+     align-items: center;
+      text-align: center; 
+      padding: 12px; 
+}
+.mt-1{
+  
+  font-family: DynaPuff,sans-serif;
+  font-size:5rem;
+}
+.btn {
+  background-color: #f1f3f5a4;
+  border: 2px solid #ccc; 
+  color: #3d69ab; 
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  width: 150px;
+  font-size: 2rem;
+
+}
+
+.btn:hover {
+  background-color: #f8f8f8; 
+  border-color: #aaa; 
+}
+  
+
+
+/* For small screens (max-width: 768px) */
+@media (max-width: 961px) {
+  .mt-1 {
+    font-size: 3rem;
+    
+  }
+}
+
+/* For very small screens (max-width: 480px) */
+@media (max-width: 480px) {
+  .mt-1 {
+    font-size: 2.5rem;
+  }
+}
+
+
+
+/* For small screens (max-width: 768px) */
+@media (max-width:961px) {
+  .btn{
+    font-size: 1.5rem;
+  }
+}
+
+/* For very small screens (max-width: 480px) */
+@media (max-width: 480px) {
+  .btn{
+    font-size: 0.5rem;
+  }
+}
